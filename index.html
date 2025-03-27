@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Adivina el Número! 🤔<br>🎈🎈🎈🎈🎈</h1>
+        <p>He pensado en un número entre 1 y 100. ¿Puedes adivinar cuál es?</p>
+
+        <div class="input-area">
+            <label for="guessInput">Tu intento:</label>
+            <input type="number" id="guessInput" min="1" max="100" required>
+            <button id="guessButton">Adivinar</button>
+        </div>
+
+        <p id="message" class="message"></p>
+        <p id="attempts" class="attempts-info"></p>
+
+        <button id="playAgainButton" class="play-again" style="display: none;">Jugar de Nuevo</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
