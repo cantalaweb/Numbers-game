@@ -11,6 +11,7 @@ let secretNumber;
 let attempts;
 const MAX_NUMBER = 100;
 const MIN_NUMBER = 1;
+const ATTEMPTS_LIMIT = 10;
 
 // --- Funciones ---
 
@@ -61,21 +62,26 @@ function handleGuess() {
     const listItem = document.createElement('li'); // Crea un elemento <li>
     listItem.textContent = userGuess; // Pone el número dentro del <li>
     guessesList.appendChild(listItem); // Añade el <li> a la lista <ul>
-    
+
     // Comparar el intento con el número secreto
     if (userGuess === secretNumber) {
-        setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos.`, 'correct');
+        setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos de ${ATTEMPTS_LIMIT}.`, 'correct');
         endGame();
     } else if (userGuess < secretNumber) {
-        setMessage('¡Demasiado bajo! Intenta un número más alto. 👇', 'wrong');
+        setMessage(`¡Demasiado bajo! Intenta un número más alto. 👇 Intentos: ${attempts}/${ATTEMPTS_LIMIT}`, 'wrong');
     } else {
-        setMessage('¡Demasiado alto! Intenta un número más bajo. 👆', 'wrong');
+        setMessage(`¡Demasiado alto! Intenta un número más bajo. 👆 Intentos: ${attempts}/${ATTEMPTS_LIMIT}`, 'wrong');
     }
 
     // Limpiar el input para el siguiente intento (si no ha ganado)
     if (userGuess !== secretNumber) {
         guessInput.value = '';
         guessInput.focus();
+    }
+
+    if (attempts >= ATTEMPTS_LIMIT) {
+        setMessage(`¡Has perdido! 🎉 El número era ${secretNumber}. Intentos: ${attempts}/${ATTEMPTS_LIMIT}.`, 'wrong');
+        endGame();
     }
 }
 
