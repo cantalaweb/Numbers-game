@@ -105,7 +105,7 @@ function handleGuess() {
         guessInput.focus();
     }
 
-    if (attempts >= ATTEMPTS_LIMIT) {
+    if (attempts > ATTEMPTS_LIMIT) {
         setMessage(`¡Has perdido! 🎉 El número era ${secretNumber}. Intentos: ${attempts}/${ATTEMPTS_LIMIT}.`, 'wrong');
         endGame();
     }
