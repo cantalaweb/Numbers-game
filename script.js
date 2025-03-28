@@ -4,6 +4,7 @@ let attempts;
 let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
+let highestScore = localStorage.highest_score
 
 // --- Elementos del DOM ---
 const guessesList = document.getElementById('guessesList');
@@ -11,6 +12,7 @@ const guessInput = document.getElementById('guessInput');
 const guessButton = document.getElementById('guessButton');
 const message = document.getElementById('message');
 const attemptsInfo = document.getElementById('attempts');
+const hScoreInfo = document.getElementById('hScore');
 const playAgainButton = document.getElementById('playAgainButton');
 const selectElement = document.getElementById("dif-select");
 const rangeText = document.getElementById("rangeText");
@@ -39,6 +41,12 @@ function startGame() {
     message.textContent = '';
     message.className = 'message'; // Quita clases de color
     attemptsInfo.textContent = '';
+    if (highestScore) {
+        hScoreInfo.textContent = `Mejor puntuación: ${highestScore}`;
+    } else {
+        hScoreInfo.textContent = '';
+    }
+    
     guessInput.value = ''; // Limpia el input
     guessInput.disabled = false; // Habilita el input
     guessButton.disabled = false; // Habilita el botón de adivinar
@@ -78,7 +86,12 @@ function handleGuess() {
 
     // Comparar el intento con el número secreto
     if (userGuess === secretNumber) {
+        if (attempts < highestScore) {
+            localStorage.highest_score = attempts
+            hScoreInfo.textContent = `¡Nueva mejor puntuación: ${highestScore}!`;
+        }
         setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos.`, 'correct');
+
         endGame();
     } else if (userGuess < secretNumber) {
         setMessage(`¡Demasiado bajo! Intenta un número más alto. 👇`, 'wrong');
