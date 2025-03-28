@@ -28,15 +28,9 @@ function startGame() {
     guessesList.innerHTML = ''; // Vacía la lista de intentos anteriores
     // Determines MAX_NUMBER
     selectElement.addEventListener("change", (event) => {
-        if (event.target.value == "easy") {
-            MAX_NUMBER = 50
-        } else if (event.target.value == "normal") {
-            MAX_NUMBER = 100
-        } else if (event.target.value == "hard") {
-            MAX_NUMBER = 200
-        } 
+        MAX_NUMBER = Number(event.target.value)
         rangeText.textContent = `He pensado en un número entre 1 y ${MAX_NUMBER}. ¿Puedes adivinar cuál es?`;
-    });    
+    });
     // Genera un número secreto entre MIN_NUMBER y MAX_NUMBER
     secretNumber = Math.floor(Math.random() * MAX_NUMBER) + MIN_NUMBER;
     attempts = 0; // Reinicia los intentos
