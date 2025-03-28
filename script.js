@@ -4,7 +4,7 @@ let attempts;
 let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
-let highestScore = localStorage.highest_score
+let highestScore = Number(localStorage.highest_score)
 if (highestScore == undefined) {
     highestScore = ATTEMPTS_LIMIT + 1
 }
@@ -90,7 +90,7 @@ function handleGuess() {
     // Comparar el intento con el número secreto
     if (userGuess === secretNumber) {
         if (attempts < highestScore) {
-            localStorage.highest_score = attempts
+            localStorage.highest_score = `${attempts}`
             hScoreInfo.textContent = `¡Nueva mejor puntuación: ${highestScore}!`;
         }
         setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos.`, 'correct');
