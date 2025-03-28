@@ -5,10 +5,7 @@ let lastGuess;
 let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
-let highestScore = localStorage.highest_score
-if (highestScore == undefined) {
-    highestScore = ATTEMPTS_LIMIT + 1
-}
+let highestScore = localStorage.highest_score || ATTEMPTS_LIMIT + 1
 
 // --- Elementos del DOM ---
 const guessesList = document.getElementById('guessesList');
