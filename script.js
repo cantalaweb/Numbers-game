@@ -4,13 +4,13 @@ let attempts;
 let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
-let highestScore = Number(localStorage.highest_score)
-console.log(localStorage.highest_score);
+let highestScore = localStorage.highest_score
 console.log(highestScore);
 
 if (highestScore == undefined) {
     highestScore = ATTEMPTS_LIMIT + 1
 }
+console.log(highestScore);
 
 // --- Elementos del DOM ---
 const guessesList = document.getElementById('guessesList');
