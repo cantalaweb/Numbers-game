@@ -26,12 +26,6 @@ const rangeText = document.getElementById("rangeText");
 // Función para iniciar o reiniciar el juego
 function startGame() {
     guessesList.innerHTML = ''; // Vacía la lista de intentos anteriores
-    // Determines MAX_NUMBER
-    selectElement.addEventListener("change", (event) => {
-        MAX_NUMBER = Number(event.target.value)
-        rangeText.textContent = `He pensado en un número entre 1 y ${MAX_NUMBER}. ¿Puedes adivinar cuál es?`;
-        startGame()
-    });
     // Genera un número secreto entre MIN_NUMBER y MAX_NUMBER
     secretNumber = Math.floor(Math.random() * MAX_NUMBER) + MIN_NUMBER;
     attempts = 0; // Reinicia los intentos
@@ -142,6 +136,13 @@ guessInput.addEventListener('keyup', function(event) {
 
 // Escuchar clics en el botón "Jugar de Nuevo"
 playAgainButton.addEventListener('click', startGame);
+
+// Determines MAX_NUMBER
+selectElement.addEventListener("change", (event) => {
+    MAX_NUMBER = Number(event.target.value)
+    rangeText.textContent = `He pensado en un número entre 1 y ${MAX_NUMBER}. ¿Puedes adivinar cuál es?`;
+    startGame()
+});
 
 // --- Iniciar el juego al cargar la página ---
 startGame();
