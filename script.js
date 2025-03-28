@@ -57,7 +57,7 @@ function handleGuess() {
 
     // Incrementar el contador de intentos
     attempts++;
-    attemptsInfo.textContent = `Intentos: ${attempts}`;
+    attemptsInfo.textContent = `Intentos: ${attempts}/${ATTEMPTS_LIMIT}`;
 
     const listItem = document.createElement('li'); // Crea un elemento <li>
     listItem.textContent = userGuess; // Pone el número dentro del <li>
@@ -65,12 +65,12 @@ function handleGuess() {
 
     // Comparar el intento con el número secreto
     if (userGuess === secretNumber) {
-        setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos de ${ATTEMPTS_LIMIT}.`, 'correct');
+        setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos.`, 'correct');
         endGame();
     } else if (userGuess < secretNumber) {
-        setMessage(`¡Demasiado bajo! Intenta un número más alto. 👇 Intentos: ${attempts}/${ATTEMPTS_LIMIT}`, 'wrong');
+        setMessage(`¡Demasiado bajo! Intenta un número más alto. 👇`, 'wrong');
     } else {
-        setMessage(`¡Demasiado alto! Intenta un número más bajo. 👆 Intentos: ${attempts}/${ATTEMPTS_LIMIT}`, 'wrong');
+        setMessage(`¡Demasiado alto! Intenta un número más bajo. 👆`, 'wrong');
     }
 
     // Limpiar el input para el siguiente intento (si no ha ganado)
