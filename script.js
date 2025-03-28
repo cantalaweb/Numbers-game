@@ -5,6 +5,9 @@ let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
 let highestScore = localStorage.highest_score
+if (highestScore == undefined) {
+    highestScore = ATTEMPTS_LIMIT + 1
+}
 
 // --- Elementos del DOM ---
 const guessesList = document.getElementById('guessesList');
@@ -41,7 +44,7 @@ function startGame() {
     message.textContent = '';
     message.className = 'message'; // Quita clases de color
     attemptsInfo.textContent = '';
-    if (highestScore) {
+    if (highestScore <= ATTEMPTS_LIMIT) {
         hScoreInfo.textContent = `Mejor puntuación: ${highestScore}`;
     } else {
         hScoreInfo.textContent = '';
