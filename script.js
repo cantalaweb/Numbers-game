@@ -1,3 +1,10 @@
+// --- Variables del Juego ---
+let secretNumber;
+let attempts;
+let MAX_NUMBER = 50;
+const MIN_NUMBER = 1;
+const ATTEMPTS_LIMIT = 10;
+
 // --- Elementos del DOM ---
 const guessesList = document.getElementById('guessesList');
 const guessInput = document.getElementById('guessInput');
@@ -5,19 +12,25 @@ const guessButton = document.getElementById('guessButton');
 const message = document.getElementById('message');
 const attemptsInfo = document.getElementById('attempts');
 const playAgainButton = document.getElementById('playAgainButton');
-
-// --- Variables del Juego ---
-let secretNumber;
-let attempts;
-const MAX_NUMBER = 100;
-const MIN_NUMBER = 1;
-const ATTEMPTS_LIMIT = 10;
+const selectElement = document.getElementById("dif-select");
+const rangeText = document.getElementById("rangeText");
 
 // --- Funciones ---
 
 // Función para iniciar o reiniciar el juego
 function startGame() {
     guessesList.innerHTML = ''; // Vacía la lista de intentos anteriores
+    // Determines MAX_NUMBER
+    selectElement.addEventListener("change", (event) => {
+        if (event.target.value == "easy") {
+            MAX_NUMBER = 50
+        } else if (event.target.value == "normal") {
+            MAX_NUMBER = 100
+        } else if (event.target.value == "hard") {
+            MAX_NUMBER = 200
+        } 
+        rangeText.textContent = `He pensado en un número entre 1 y ${MAX_NUMBER}. ¿Puedes adivinar cuál es?`;
+    });    
     // Genera un número secreto entre MIN_NUMBER y MAX_NUMBER
     secretNumber = Math.floor(Math.random() * MAX_NUMBER) + MIN_NUMBER;
     attempts = 0; // Reinicia los intentos

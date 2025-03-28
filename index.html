@@ -10,7 +10,13 @@
 
     <div class="container">
         <h1>¡Adivina el Número! 🤔<br>🎈🎈🎈🎈🎈</h1>
-        <p>He pensado en un número entre 1 y 100. ¿Puedes adivinar cuál es?</p>
+        <label for="dif-select">Difficulty level:</label>
+        <select name="difficulty" id="dif-select">
+            <option value="easy" selected>Easy [1-50]</option>
+            <option value="normal">Normal [1-100]</option>
+            <option value="hard">Hard [1-200]</option>
+        </select>
+        <p id="rangeText">He pensado en un número entre 1 y 50. ¿Puedes adivinar cuál es?</p>
 
         <div class="input-area">
             <label for="guessInput">Tu intento:</label>
