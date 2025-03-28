@@ -30,6 +30,7 @@ function startGame() {
     selectElement.addEventListener("change", (event) => {
         MAX_NUMBER = Number(event.target.value)
         rangeText.textContent = `He pensado en un número entre 1 y ${MAX_NUMBER}. ¿Puedes adivinar cuál es?`;
+        startGame()
     });
     // Genera un número secreto entre MIN_NUMBER y MAX_NUMBER
     secretNumber = Math.floor(Math.random() * MAX_NUMBER) + MIN_NUMBER;
