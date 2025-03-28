@@ -89,6 +89,8 @@ function handleGuess() {
 
     // Comparar el intento con el número secreto
     if (userGuess === secretNumber) {
+        console.log(attempts, highestScore);
+        
         if (attempts < highestScore) {
             localStorage.highest_score = `${attempts}`
             hScoreInfo.textContent = `¡Nueva mejor puntuación: ${highestScore}!`;
