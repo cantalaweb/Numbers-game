@@ -23,9 +23,11 @@ const rangeText = document.getElementById("rangeText");
 // Función para iniciar o reiniciar el juego
 function startGame() {
     guessesList.innerHTML = ''; // Vacía la lista de intentos anteriores
+    hScoreInfo.textContent = ''
     // Genera un número secreto entre MIN_NUMBER y MAX_NUMBER
     secretNumber = Math.floor(Math.random() * MAX_NUMBER) + MIN_NUMBER;
     attempts = 0; // Reinicia los intentos
+    highestScore = localStorage.highest_score || ATTEMPTS_LIMIT + 1
 
     // Mensajes iniciales y estado de la UI
     message.textContent = '';
