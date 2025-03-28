@@ -1,6 +1,7 @@
 // --- Variables del Juego ---
 let secretNumber;
 let attempts;
+let lastGuess;
 let MAX_NUMBER = 50;
 const MIN_NUMBER = 1;
 const ATTEMPTS_LIMIT = 10;
@@ -95,13 +96,15 @@ function handleGuess() {
             hScoreInfo.textContent = `¡Nueva mejor puntuación: ${highestScore}!`;
         }
         setMessage(`¡Correcto! 🎉 El número era ${secretNumber}. Lo adivinaste en ${attempts} intentos.`, 'correct');
-
         endGame();
-    } else if (userGuess < secretNumber) {
-        setMessage(`¡Demasiado bajo! Intenta un número más alto. 👇`, 'wrong');
+    } else if (lastGuess && (Math.abs(userGuess - secretNumber) > Math.abs(lastGuess - secretNumber))) {
+        setMessage(`¡Más frío! 🥶`, 'wrong');
+    } else if (lastGuess && (Math.abs(userGuess - secretNumber) < Math.abs(lastGuess - secretNumber))) {
+        setMessage(`¡Más caliente! 🔥`, 'wrong');
     } else {
-        setMessage(`¡Demasiado alto! Intenta un número más bajo. 👆`, 'wrong');
+        setMessage(`Ni frío ni caliente`, 'wrong');
     }
+    lastGuess = userGuess
 
     // Limpiar el input para el siguiente intento (si no ha ganado)
     if (userGuess !== secretNumber) {
